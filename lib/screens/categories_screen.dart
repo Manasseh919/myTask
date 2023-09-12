@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:todoapp/models/category.dart';
 import 'package:todoapp/screens/home_screen.dart';
+import 'package:todoapp/services/category_service.dart';
 
 class CategoriesScreen extends StatefulWidget {
   const CategoriesScreen({super.key});
@@ -9,6 +11,12 @@ class CategoriesScreen extends StatefulWidget {
 }
 
 class _CategoriesScreenState extends State<CategoriesScreen> {
+  var _categoryNameController = TextEditingController();
+  var _categoryDescriptionController = TextEditingController();
+
+  var _category = Category();
+  var _categoryService = CategoryService();
+
   _showFormDialog(BuildContext context) {
     return showDialog(
         context: context,
@@ -17,22 +25,30 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
           return AlertDialog(
             actions: [
               TextButton(
-                  onPressed: ()=> Navigator.pop(context),
+                  onPressed: () => Navigator.pop(context),
                   child: Text("Cancel"),
                   style: ButtonStyle(
                     foregroundColor:
                         MaterialStateProperty.all<Color>(Colors.red),
                   )),
-              TextButton(onPressed: () {}, child: Text("Save")),
+              TextButton(
+                  onPressed: () {
+                    _category.name = _categoryNameController.text;
+                    _category.description = _categoryDescriptionController.text;
+                    _categoryService.saveCategory(_category);
+                  },
+                  child: Text("Save")),
             ],
             title: Text("Categories Form"),
             content: SingleChildScrollView(
               child: Column(children: [
                 TextField(
+                  controller: _categoryNameController,
                   decoration: InputDecoration(
                       hintText: "Write a category", labelText: "Category"),
                 ),
                 TextField(
+                  controller: _categoryDescriptionController,
                   decoration: InputDecoration(
                       hintText: "Description", labelText: "Description"),
                 ),

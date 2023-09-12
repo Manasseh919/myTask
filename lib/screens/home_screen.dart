@@ -13,9 +13,10 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Todolist sqflite"),
+        title: Text("My Task List"),
       ),
-    drawer: DrawerNavigation(),
+      drawer: DrawerNavigation(),
     );
+    
   }
-} 
+}
