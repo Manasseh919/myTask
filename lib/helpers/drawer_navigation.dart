@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:todoapp/screens/categories_screen.dart';
+import 'package:todoapp/screens/home_screen.dart';
 
 class DrawerNavigation extends StatefulWidget {
   const DrawerNavigation({super.key});
@@ -13,7 +15,7 @@ class _DrawerNavigationState extends State<DrawerNavigation> {
     return Container(
       child: Drawer(
         child: ListView(
-          children: [
+          children:  [
             UserAccountsDrawerHeader(
               currentAccountPicture: CircleAvatar(
                 backgroundImage: NetworkImage(
@@ -23,7 +25,18 @@ class _DrawerNavigationState extends State<DrawerNavigation> {
               accountEmail: Text("manasseh919@gmail.com"),
               decoration: BoxDecoration(color: Colors.blue),
             ),
+            ListTile(
+              title: const Text("Home"),
+              leading: const Icon(Icons.home),
+              onTap: ()=>Navigator.of(context).push(MaterialPageRoute(builder: (context)=>HomeScreen()))
+            ),
+            ListTile(
+              title: const Text("Categories"),
+              leading: const Icon(Icons.view_list),
+              onTap: ()=>Navigator.of(context).push(MaterialPageRoute(builder: (context)=>CategoriesScreen()))
+            ),
           ],
+          
         ),
       ),
     );
