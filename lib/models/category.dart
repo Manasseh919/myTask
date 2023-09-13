@@ -1,7 +1,7 @@
 class Category {
   int? id;
-  late String name;
-  late String description;
+  String? name;
+  String? description;
 
   categoryMap() {
     var mapping = <String, dynamic>{};

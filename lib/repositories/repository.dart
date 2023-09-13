@@ -23,4 +23,11 @@ class Repository {
     var connection = await database;
     return await connection?.insert(table, data);
   }
+
+  //read data from table
+  readData(table)async{
+    var connection=await database;
+    return await connection?.query(table);
+
+  }
 }
